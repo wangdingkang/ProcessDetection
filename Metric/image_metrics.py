@@ -37,9 +37,9 @@ def get_TP_FP_FN(gt_path, prop_path, threshold=128):
 
 
 # Compute Modified TP, FP, FN
-# Modified TP: in prop, and if its NN in gt is smaller than  radius
+# Modified TP: in prop, and if its NN in gt is no greater than  radius
 # Modified FP: in prop, its NN in gt is not within radius, we guarantee that TP + NP = P
-# Modified FN: in gt, its NN in gt is more than radius away.
+# Modified FN: in gt, its NN in prop is more than radius away.
 # TN: Others
 def get_mod_TP_FP_FN(gt_path, prop_path, radius=2, threshold=128):
     gt_img = Image.open(gt_path)
