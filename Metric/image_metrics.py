@@ -55,12 +55,12 @@ def get_mod_TP_FP_FN(gt_path, prop_path, radius=2, threshold=128):
 
     distances, _ = gt_nntree.kneighbors(prop_points)
 
-    TP = len(np.argwhere(distances < radius))
+    TP = len(np.argwhere(distances <= radius))
     FP = len(prop_points) - TP
 
     distances, _ = prop_nntree.kneighbors(gt_points)
 
-    FN = len(np.argwhere(distances >= radius))
+    FN = len(np.argwhere(distances > radius))
     return TP, FP, FN
 
 
