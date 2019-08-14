@@ -13,4 +13,4 @@ The set of white pixels in prediction, such that its nearest neighbor (can has d
 The remaining white pixels in prediction excluding all True Positives.
 
 #### Modified False Negative: 
-The set of white pixels in annotation such that its NN in prediction is GREATER THAN (>) r.
+The set of white pixels in annotation such that its NN in prediction has distance GREATER THAN (>) r.
