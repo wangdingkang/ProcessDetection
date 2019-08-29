@@ -11,6 +11,9 @@ prop_folder = 'data/DM++/binarized_by_hard_th0.5'
 
 files = os.listdir(gt_folder)
 
+threshold = 0.4*255
+radius = 3
+
 sTP, sFP, sFN = 0, 0, 0
 msTP, msFP, msFN = 0, 0, 0
 
@@ -21,13 +24,13 @@ for f in files:
     print(f)
 
     # normal precision & recall with threshold = 0.4*255.
-    TP, FP, FN = image_metrics.get_TP_FP_FN(gt_path, prop_path, threshold=0.4*255)
+    TP, FP, FN = image_metrics.get_TP_FP_FN(gt_path, prop_path, threshold=threshold)
     sTP += TP
     sFP += FP
     sFN += FN
 
     # r = 3, threshold = 0.4 * 255.
-    mTP, mFP, mFN = image_metrics.get_mod_TP_FP_FN(gt_path, prop_path, radius=3, threshold=0.4*255)
+    mTP, mFP, mFN = image_metrics.get_mod_TP_FP_FN(gt_path, prop_path, radius=radius, threshold=threshold)
     msTP += mTP
     msFP += mFP
     msFN += mFN
@@ -35,8 +38,8 @@ for f in files:
 
 Precision = sTP / (sTP + sFP)
 Recall = sTP / (sTP + sFN)
-print(Precision, Recall)
+print('Precision and Recall: ', Precision, Recall)
 
 mPrecision = msTP / (msTP + msFP)
 mRecall = msTP / (msTP + msFN)
-print(mPrecision, mRecall)
+print('Modified Precision and Recall: ', mPrecision, mRecall)
