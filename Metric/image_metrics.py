@@ -7,19 +7,10 @@ import os
 from sklearn.neighbors import NearestNeighbors
 
 def __get_image_point(nor_img, threshold):
-    width, height = nor_img.size
-    pixels = nor_img.load()
-    point_list = []
-    for x in range(width):
-        for y in range(height):
-            if pixels[x, y] > threshold:
-                # nor_img.putpixel((x, y), 255)
-                point_list.append((x, y))
-            # else:
-            #     nor_img.putpixel((x, y), 0)
-    # nor_img.save(filtered_path, 'TIFF')
+    pixels = np.asarray(nor_img)
+    point_list = np.argwhere(pixels > threshold).tolist()
+    point_list = [tuple(ele) for ele in point_list]
     return point_list
-
 
 
 # Compute TP, FP, FN
